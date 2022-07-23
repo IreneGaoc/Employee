@@ -3,8 +3,8 @@ import {getAllEmployee, createEmployee, updateEmployee, removeEmployee} from '..
 
 const router = express.Router();
 router.get('/', getAllEmployee);
-router.post('/',  createEmployee);
-router.patch('/:id', updateEmployee);
+router.post('/add',  createEmployee);
+router.patch('/edit:id', updateEmployee);
 router.delete('/:id', removeEmployee);
 
 export default router;

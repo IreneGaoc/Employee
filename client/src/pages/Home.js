@@ -3,7 +3,7 @@ import axios from "axios"
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-
+import {Link} from 'react-router-dom';
 const Home = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -38,8 +38,8 @@ const Home = () => {
                             <td>{item.Salary}</td>
                             <td>Edit</td>
                             <td>
-                                <link to={`/${item.EmployeeId}`}>
-                                <Button>Edit</Button></link>
+                                <Link to={`/${item.EmployeeId}`}>
+                                <Button>Edit</Button></Link>
                                 <Button>Delete</Button>
                             </td>
                         </tr>
@@ -47,7 +47,8 @@ const Home = () => {
                 })}
             </tbody>
         </Table>
-        <Button variant="outline-success">Add Employee</Button>
+        <Link to="/add">
+        <Button variant="outline-success">Add Employee</Button></Link>
         </Container>
     );
     ;
