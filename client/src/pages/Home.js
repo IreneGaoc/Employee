@@ -25,7 +25,7 @@ const Home = () => {
     }, []);
     const fetchdata = async () => {
         try {
-            const response = await axios.get("http://localhost:3000");
+            const response = await axios.get("http://localhost:5000");
             setData(response.data.res)
         }
         catch (err) {
@@ -47,7 +47,7 @@ const Home = () => {
     const deleteEmployee = async (id) => {
         try {
             setShow(false);
-            await axios.delete(`http://localhost:3000/${id}`);
+            await axios.delete(`http://localhost:5000/${id}`);
             fetchdata();
         }
         catch (err) {

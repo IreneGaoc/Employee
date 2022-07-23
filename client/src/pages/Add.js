@@ -27,7 +27,7 @@ const Add = () => {
 
     const getOneEmployee = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:3000/${id}`)
+            const response = await axios.get(`http://localhost:5000/${id}`)
             let data = response.data.res[0]
             setusrData({
                 firstname: data.FirstName,
@@ -42,7 +42,7 @@ const Add = () => {
 
     const addNewEmployee = async (usrdata) => {
         try {
-            await axios.post("http://localhost:3000/add", usrdata)
+            await axios.post("http://localhost:5000/add", usrdata)
             setSuccess("Sucessfully added a new employee!")
             await new Promise(r => setTimeout(r, 2000))
             navigate("/");
@@ -53,7 +53,7 @@ const Add = () => {
 
     const updateOneEmployee = async (id) => {
         try {
-            await axios.patch(`http://localhost:3000/edit/${id}`, usrdata)
+            await axios.patch(`http://localhost:5000/edit/${id}`, usrdata)
             setSuccess("Updated successfully!")
             await new Promise(r => setTimeout(r, 2000))
             navigate("/");

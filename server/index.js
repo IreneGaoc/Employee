@@ -3,7 +3,7 @@ import cors from 'cors';
 import employeeRouter from './routes/employees.js'
 import bodyparser from 'body-parser';
 
-const port = 3000
+const port = 5000
 const app = express()
 
 app.use(bodyparser.json());
