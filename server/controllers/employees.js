@@ -1,6 +1,4 @@
-import express from 'express';
 import {getAll, addEmployee, editEmployee, deleteEmployee} from '../db/dbemployees.js';
-const router = express.Router();
 
 export const getAllEmployee = async (req, res) => {    
     try{
@@ -44,5 +42,3 @@ export const removeEmployee = async (req, res) => {
 		res.send({res:'error'});
     }
 }
-
-export default router;
