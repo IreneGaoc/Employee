@@ -17,7 +17,7 @@ const Confirm = ({id, title, message, show, hide, confirm}) => {
               Close
             </Button>
             <Button variant="primary"  onClick={() => confirm(id) }>
-              I'm sure
+              Confirm
             </Button>
           </Modal.Footer>
         </Modal>

@@ -33,7 +33,7 @@ const Add = () => {
                 firstname: data.FirstName,
                 lastname: data.LastName,
                 salary: data.Salary
-            }
+                }
             )
         } catch (error) {
             setError("Unable to fetch that user")
@@ -64,7 +64,7 @@ const Add = () => {
 
     const Submit = async (e) => {
         e.preventDefault();
-        if (!usrdata.firstname || !usrdata.lastname || !usrdata.salary) {
+        if (!usrdata.firstname.trim() || !usrdata.lastname.trim() || !usrdata.salary.trim()) {
             setError("Please make sure you filled out all the fields.")
         }
         else if (isNaN(usrdata.salary)) {
