@@ -4,17 +4,18 @@ const router = express.Router();
 
 export const getAllEmployee = async (req, res) => {    
     try{
-        res = await getAll();
-        res.send({res:res})
+        const data = await getAll();
+        res.send({res:data})
     }catch(err){
 		console.log(err);
 		res.send({res:'error'});
     }
 }
 export const createEmployee = async (req, res) => {
+    const { firstname, lastname, salary } = req.body;
     try{
-        res = await addEmployee();
-        res.send({res:res})
+        const data = await addEmployee(firstname, lastname, salary);
+        res.send({res:data})
     }catch(err){
 		console.log(err);
 		res.send({res:'error'});
@@ -25,8 +26,8 @@ export const updateEmployee = async (req, res) => {
     const { id } = req.params;
     const { firstname, lastname, salary } = req.body;
     try{
-        res = await editEmployee(id, firstname, lastname, salary);
-        res.send({res:res})
+        const data = await editEmployee(id, firstname, lastname, salary);
+        res.send({res:data})
     }catch(err){
 		console.log(err);
 		res.send({res:'error'});
@@ -36,8 +37,8 @@ export const updateEmployee = async (req, res) => {
 export const removeEmployee = async (req, res) => {
     const { id } = req.params;
     try{
-        res = await deleteEmployee(id);
-        res.send({res:res})
+        const data = await deleteEmployee(id);
+        res.send({res:data})
     }catch(err){
 		console.log(err);
 		res.send({res:'error'});
