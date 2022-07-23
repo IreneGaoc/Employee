@@ -19,7 +19,6 @@ const Home = () => {
     const [title, setTitle] = useState(null);
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null)
-    const [success, setSuccess] = useState(null)
 
     useEffect(() => {
         fetchdata();
@@ -58,7 +57,6 @@ const Home = () => {
 
     return (
         <Container fluid="md" className='mt-5 text-center'>
-            {success && <Alert variant="success">{success}</Alert>}
             {error && <Alert variant="danger">{error}</Alert>}
             <Confirm id={id} title={title} message={message} show={show} hide={hide} confirm={deleteEmployee} />
             <h3 className='mb-3'><b>Employee List</b></h3>
