@@ -14,6 +14,16 @@
 * The ability to delete an employee
 * The ability to create a new employee
 
+### Prerequisite: ###
+
+* Make sure you have node.js and npm installed on your device.
+    * To install them, go to https://nodejs.org/en/ 
+*	Make sure you don’t have any programs running on localhost:3000 and localhost:5000
+
+### How to run this program: ###
+* Go to server folder, run `npm install` then run `npm start`
+* Go to client folder, run `npm install` then run `npm start`
+
 ### Technical Guidelines: ###
 * Structure your application and components in a modular/reusable way
 * Commit code with useful and informative comments
