@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import axios from "axios"
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Confirm from '../components/Modal/Confirm';
 import Alert from 'react-bootstrap/Alert';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Fab from '@mui/material/Fab';
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -33,7 +38,7 @@ const Home = () => {
         setShow(false);
     };
 
-    const modal = (id) =>{
+    const modal = (id) => {
         setId(id);
         setTitle("Warning");
         setMessage("Are you sure you want to delete this employee?");
@@ -44,7 +49,6 @@ const Home = () => {
         try {
             setShow(false);
             await axios.delete(`http://localhost:3000/${id}`);
-            setSuccess("Sucessfully deleted")
             fetchdata();
         }
         catch (err) {
@@ -53,40 +57,52 @@ const Home = () => {
     }
 
     return (
-        <Container fluid="md">
-        {success && <Alert variant = "success">{success}</Alert>}
-        {error && <Alert variant = "danger">{error}</Alert>}
-        <Confirm id={id} title={title} message={message} show={show} hide={hide} confirm={deleteEmployee} />
-        <Table striped >
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Salary</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {data && data.map((item, i) => {
-                    return (
-                        <tr key={i}>
-                            <td>{item.FirstName}</td>
-                            <td>{item.LastName}</td>
-                            <td>$ {(item.Salary).toLocaleString(undefined, { maximumFractionDigits: 2 })}</td>
-                            <td>
-                                <Link to={`/${item.EmployeeId}`}>
-                                    <Button>Edit</Button>
-                                </Link>
-                                <Button onClick={() => { modal(item.EmployeeId)}}>Delete</Button>
-                            </td>
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </Table>
-        <Link to="/add">
-            <Button variant="outline-success">Add Employee</Button>
-        </Link>
+        <Container fluid="md" className='mt-5 text-center'>
+            {success && <Alert variant="success">{success}</Alert>}
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Confirm id={id} title={title} message={message} show={show} hide={hide} confirm={deleteEmployee} />
+            <h3 className='mb-3'><b>Employee List</b></h3>
+            <Table className="table table-sm table-hover">
+                <thead className="bg-secondary text-white">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data && data.map((item, i) => {
+                        return (
+                            <tr key={i}>
+                                <td>{item.FirstName}</td>
+                                <td>{item.LastName}</td>
+                                <td>$ {(item.Salary).toLocaleString(undefined, { maximumFractionDigits: 2 })}</td>
+                                <td>
+                                    <Link to={`/${item.EmployeeId}`}>
+                                        <Tooltip placement="top" title="Edit" followCursor>
+                                            <IconButton>
+                                                <BorderColorIcon color="secondary"/>
+                                            </IconButton>
+                                        </Tooltip>
+                                    </Link>
+                                    <Tooltip placement="top" title="Delete" followCursor>
+                                        <IconButton  onClick={() => { modal(item.EmployeeId) }} >
+                                            <DeleteIcon color="error"/>
+                                        </IconButton>
+                                    </Tooltip>
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </Table>
+            <Link to="/add" style={{ textDecoration: 'none' }}>
+                <Fab variant="extended" color="primary">
+                    <PersonAddIcon sx={{ mr: 1 }} />
+                    Add Employee
+                </Fab>
+            </Link>
         </Container>
     );
     ;
