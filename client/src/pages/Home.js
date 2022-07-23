@@ -7,17 +7,17 @@ import {Link} from 'react-router-dom';
 const Home = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
-        const fetchdata = async () => {
+        fetchdata();
+    }, []);
+    const fetchdata = async () => {
+        try {
             const response = await axios.get("http://localhost:3000");
             setData(response.data.res)
-        };
-        try {
-            fetchdata()
         }
         catch (err) {
             console.log("Unable to fetch data")
         }
-    }, []);
+    };
     return (
         <Container fluid="md">
         <Table striped >

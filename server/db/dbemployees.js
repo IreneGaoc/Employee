@@ -30,6 +30,22 @@ export const getAll = async() => {
     return response;
 }
 
+export const getOne = async(id) => {
+    const response = await new Promise((resolve, reject) => {
+        const query = "SELECT * FROM Employees WHERE EmployeeId = ?";
+        const values = [id]
+        connection.query(query, values, (err, rows) => {
+            if (err) {
+                reject(new Error(err.message));
+            }
+            else{
+                resolve(rows);
+            }
+        })
+    });
+    return response;
+}
+
 export const addEmployee = async(firstname, lastname, salary) => {
     const response = await new Promise((resolve, reject) => {
         const query = "INSERT INTO Employees (FirstName, LastName, Salary) VALUES (?, ?, ?)";
