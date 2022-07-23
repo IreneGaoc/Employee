@@ -63,7 +63,7 @@ const Home = () => {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Salary</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,8 +72,7 @@ const Home = () => {
                         <tr key={i}>
                             <td>{item.FirstName}</td>
                             <td>{item.LastName}</td>
-                            <td>{item.Salary}</td>
-                            <td>Edit</td>
+                            <td>$ {(item.Salary).toLocaleString(undefined, { maximumFractionDigits: 2 })}</td>
                             <td>
                                 <Link to={`/${item.EmployeeId}`}>
                                     <Button>Edit</Button>
