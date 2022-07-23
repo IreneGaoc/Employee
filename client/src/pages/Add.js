@@ -35,18 +35,18 @@ const Add = () => {
             )
             console.log(data)
         }catch (error) {
-            console.log("Unable to fetch that user")
+            setError("Unable to fetch that user")
         }
     }
 
     const addNewEmployee = async (usrdata) => {
         try{
             await axios.post("http://localhost:3000/add", usrdata)
-            setSuccess("Sucessfully added a new Employee!")
+            setSuccess("Sucessfully added a new employee!")
             await new Promise(r => setTimeout(r, 2000))
             navigate("/");
         }catch (error) {
-            console.log("Unable to add new user")
+            setError("Unable to add new user")
         } 
     }
 
@@ -57,7 +57,7 @@ const Add = () => {
             await new Promise(r => setTimeout(r, 2000))
             navigate("/");
         }catch (error) {
-            console.log("Unable to update the user")
+            setError("Unable to update the user")
         } 
     }
 
