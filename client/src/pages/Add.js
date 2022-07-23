@@ -35,7 +35,6 @@ const Add = () => {
                 salary: data.Salary
             }
             )
-            console.log(data)
         } catch (error) {
             setError("Unable to fetch that user")
         }
@@ -93,19 +92,19 @@ const Add = () => {
                     {id ? <h3 className="text-center m-4">Update employee</h3> : <h3 className="text-center m-4">Add employee</h3>}
                 </Card.Header>
                 <Form onSubmit={Submit} className='mt-5 md-4 m-4'>
-                    <Form.Group className="mb-3" controlId="formFirstName">
+                    <Form.Group className="mb-3" controlid="formFirstName">
                         <Form.Label>First Name</Form.Label>
                         <Form.Control name="firstname" value={usrdata.firstname} type="text"
                             onChange={handleInput} />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formLastName">
+                    <Form.Group className="mb-3" controlid="formLastName">
                         <Form.Label>Last Name</Form.Label>
                         <Form.Control name="lastname" value={usrdata.lastname} type="text"
                             onChange={handleInput} />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formSalary">
+                    <Form.Group className="mb-3" controlid="formSalary">
                         <Form.Label>Salary</Form.Label>
-                        <InputGroup className="mb-3" controlId="formSalary">
+                        <InputGroup className="mb-3" controlid="formSalary">
                             <InputGroup.Text>$</InputGroup.Text>
                             <Form.Control name="salary" value={usrdata.salary} type="text"
                                 onChange={handleInput} />
@@ -115,13 +114,14 @@ const Add = () => {
                         <Button variant="primary" size="lg" type="submit">
                             Submit
                         </Button>
-
-                        <Button variant="light">
-                            <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                        <div className="d-grid gap-2">
+                        <Button variant="secondary" >
                                 cancel
-                            </Link>
                         </Button>
+                        </div>
 
+                        </Link>
                     </div>
 
                 </Form>
