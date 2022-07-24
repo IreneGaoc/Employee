@@ -1,6 +1,5 @@
 import mysql from 'mysql';
 import dotenv from 'dotenv';
-import * as path from 'path';
 import fs from 'fs';
 dotenv.config();
 
@@ -11,7 +10,8 @@ const connection = mysql.createConnection({
     port:process.env.DB_PORT,
     database:process.env.DB_DATABASE
 }); 
-connection.connect((err) => {
+
+const initializesql = async() =>{
     let queries = fs.readFileSync('data.sql', { encoding: "UTF-8" }).split(";\n");
     for (let query of queries) {
         query = query.trim();
@@ -25,6 +25,9 @@ connection.connect((err) => {
           });
         }
       }
+}
+connection.connect((err) => {
+    // initializesql();
     if (err) {
         console.log(err);
     }
