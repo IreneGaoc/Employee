@@ -23,7 +23,7 @@
 ### How to run this program: ###
 * Go to server folder, run `npm install` then run `npm start`
 * Go to client folder, run `npm install` then run `npm start`
-
+* Note: If you want sql to be initialized every time you run the program, uncomment line 30( initializesql(); ) on server/db/dbemployees.js
 ### Technical Guidelines: ###
 * Structure your application and components in a modular/reusable way
 * Commit code with useful and informative comments
