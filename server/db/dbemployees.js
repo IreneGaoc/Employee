@@ -1,5 +1,7 @@
 import mysql from 'mysql';
 import dotenv from 'dotenv';
+import * as path from 'path';
+import fs from 'fs';
 dotenv.config();
 
 const connection = mysql.createConnection({
@@ -10,6 +12,19 @@ const connection = mysql.createConnection({
     database:process.env.DB_DATABASE
 }); 
 connection.connect((err) => {
+    let queries = fs.readFileSync('data.sql', { encoding: "UTF-8" }).split(";\n");
+    for (let query of queries) {
+        query = query.trim();
+        if (query.length !== 0 && !query.match(/\/\*/)) {
+          connection.query(query, function (err, _) {
+            if (err) {
+              console.log("Failed importing database");
+            } else {
+              console.log(`Importing Mysql Database  - Query:${query}`);
+            }
+          });
+        }
+      }
     if (err) {
         console.log(err);
     }
