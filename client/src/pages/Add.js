@@ -64,11 +64,15 @@ const Add = () => {
 
     const Submit = async (e) => {
         e.preventDefault();
-        if (!usrdata.firstname.trim() || !usrdata.lastname.trim() || !usrdata.salary.trim()) {
+        const salary_new = parseInt(usrdata.salary);
+        if (!usrdata.firstname || !usrdata.lastname || !usrdata.salary) {
             setError("Please make sure you filled out all the fields.")
         }
         else if (isNaN(usrdata.salary)) {
             setError("Please make sure the salary must be numbers.")
+        }
+        else if (salary_new <= 0){
+            setError("Please make sure the salary must be positive numbers.")
         }
         else {
             if (!id) {
